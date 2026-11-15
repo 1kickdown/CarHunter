@@ -106,7 +106,6 @@ struct CarRowView: View {
                 }
             }
             
-
             if let specs = car.specs {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
@@ -119,7 +118,6 @@ struct CarRowView: View {
                             )
                         }
                         
-  
                         if let hp = specs.horsepower {
                             SpecBadge(
                                 icon: "bolt",
@@ -128,7 +126,6 @@ struct CarRowView: View {
                             )
                         }
                         
-     
                         if let fuel = specs.fuelConsumptionCity {
                             SpecBadge(
                                 icon: "fuelpump",
@@ -137,7 +134,6 @@ struct CarRowView: View {
                             )
                         }
                         
-                
                         if let transmission = specs.transmission {
                             let icon = transmission.lowercased().contains("auto") ? "gearshift.2" : "gearshift"
                             SpecBadge(
@@ -147,7 +143,6 @@ struct CarRowView: View {
                             )
                         }
                         
-          
                         if let drive = specs.driveType {
                             let driveIcon = drive == "AWD" ? "4wd" : "car"
                             SpecBadge(
@@ -177,7 +172,6 @@ struct CarRowView: View {
                 }
             }
             
-      
             HStack {
                 if car.listingCount > 0 {
                     Label("\(car.listingCount) ads", systemImage: "list.bullet")
@@ -207,7 +201,6 @@ struct CarRowView: View {
 
     }
 }
-
 
 struct SpecBadge: View {
     let icon: String

@@ -25,7 +25,6 @@ struct CarSpecs: Codable, Sendable {
     let make: String
     let model: String
     
-    // В структурах init создается автоматически, но мы можем оставить статическое свойство для удобства
     static var empty: CarSpecs {
         CarSpecs(
             engineType: nil,
