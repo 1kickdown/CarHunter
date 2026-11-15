@@ -39,8 +39,6 @@ struct CarDetailView: View {
                 }
             }
             
-
-
             if let specs = car.specs {
                 Section("Specifications") {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -93,7 +91,6 @@ struct CarDetailView: View {
                     }
                 }
             }
-            
             
             if let minPrice = car.minPrice, let maxPrice = car.maxPrice {
                 Section("Budget") {
@@ -223,7 +220,6 @@ struct ListingRowView: View {
     }
 }
 
-// Для отображения Safari
 struct SafariView: UIViewControllerRepresentable {
     let url: URL
     
@@ -233,9 +229,3 @@ struct SafariView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }
-
-
-
-//#Preview {
-//    CarDetailView()
-//}

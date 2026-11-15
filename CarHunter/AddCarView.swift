@@ -18,14 +18,9 @@ struct AddCarView: View {
     @State private var maxPrice: Int? = nil
     @State private var notes = ""
     
-    
-    ////////////////////////
     @State private var year = Calendar.current.component(.year, from: Date()) - 5
     @State private var isLoadingSpecs = false
     @State private var loadedSpecs: CarSpecs? = nil
-    ///////////////////////
-    
-    
     
     var body: some View {
         NavigationStack{
@@ -34,7 +29,6 @@ struct AddCarView: View {
                     TextField("Brand (BMW, Mercedes...", text: $brand)
                     TextField("Model (e60, S class...", text: $model)
                 }
-                
                 
                 Section("Price (Ft) - Optional"){
                     HStack{
@@ -54,7 +48,6 @@ struct AddCarView: View {
                     TextField("E.g. year, engine...", text: $notes, axis: .vertical)
                         .lineLimit(3...6)
                 }
-                
                 
                 Section("Year (for specs)") {
                     Picker("Year", selection: $year) {
@@ -136,7 +129,6 @@ struct AddCarView: View {
                     .disabled(brand.isEmpty || model.isEmpty)
                 }
 
-                
             }
             .navigationTitle("NEW Car")
             .toolbar{
@@ -185,35 +177,12 @@ struct AddCarView: View {
                 } else {
                     print("❌ Failed to load specs")
 
-//                    self.createTestSpecs()
                 }
                 self.isLoadingSpecs = false
             }
         }
     }
 
-//    //////////////////////// TEST
-//    private func createTestSpecs() {
-//        let testSpecs = CarSpecs(
-//            engineType: "Gasoline",
-//            engineSize: 2.0,
-//            horsepower: 150,
-//            fuelConsumptionCity: 9.5,
-//            fuelConsumptionHighway: 6.2,
-//            fuelConsumptionCombined: 7.8,
-//            transmission: "Manual",
-//            driveType: "FWD",
-//            acceleration: 8.5,
-//            maxSpeed: 220,
-//            weight: 1450,
-//            co2Emissions: 160,
-//            imageUrl: nil,
-//            year: year,
-//            make: brand,
-//            model: model
-//        )
-//        self.loadedSpecs = testSpecs
-//    }
 }
 
 #Preview {

@@ -8,18 +8,12 @@
 import Foundation
 import SwiftData
 
-
-//extension CarSpecs: @unchecked Sendable {}
-
-
 @Model
 
 final class CarModel{
    
-    
     var uid: UUID = UUID()
 
-    
     var brand: String
     var model: String
     var yearFrom: Int?
@@ -31,8 +25,6 @@ final class CarModel{
     var maxPrice: Int?
     var isActive: Bool
     var notes: String?
-    
-    
     
     var averageMarketPrice: Int = 0
     var listingCount: Int = 0
@@ -48,10 +40,7 @@ final class CarModel{
         }
     }
     
-
     var specsData: Data?
-    
-//    @Attribute(.transformable) var specsData: Data?
     
     init(brand: String,
              model: String,
@@ -91,8 +80,6 @@ final class CarModel{
             return "80 000 - 120 000 Ft/év"
         }
     }
-    
-
     
     var specs: CarSpecs? {
         get {

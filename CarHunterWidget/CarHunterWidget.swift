@@ -34,15 +34,11 @@ struct Provider: TimelineProvider {
             let cars = WidgetDataStorage.load()
             let entry = SimpleEntry(date: Date(), cars: cars)
             
-            // Обновляем каждый час
             let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
             let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
             completion(timeline)
     }
 
-//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -93,7 +89,6 @@ struct CarHunterWidgetEntryView : View {
                         .bold()
                 }
                     
-                    // Прогресс бюджет
                 ProgressView(value: first.progressToBudget)
                     .tint(first.progressToBudget > 1 ? .red : .green)
                     
@@ -150,7 +145,6 @@ struct CarHunterWidgetEntryView : View {
                             
                         Spacer()
                             
-                            // Иконка платформы
                         Text(car.platformIcon)
                             .font(.caption2)
                             
@@ -176,7 +170,6 @@ struct CarHunterWidgetEntryView : View {
                             
                         Spacer()
                             
-                        // Показываем площадку цветом
                         Circle()
                             .fill(car.platform == "🇭🇺" ? .red :
                                     car.platform == "🇰🇿" ? .blue : .green)

@@ -19,7 +19,7 @@ struct WidgetCarData: Codable, Identifiable{
     let lastUpdated: Date
     let minPrice: Int
     let maxPrice: Int
-    let platform: String // "🇭🇺", "🇰🇿", "🌍"
+    let platform: String
     
     init(id: String,
          brand: String,
@@ -44,7 +44,6 @@ struct WidgetCarData: Codable, Identifiable{
         self.platform = platform
     }
     
-    
     var progressToBudget: Double {
         guard maxPrice > minPrice else { return 0}
         
@@ -56,7 +55,6 @@ struct WidgetCarData: Codable, Identifiable{
     var isGoodDealAvailable: Bool {
         goodDealsCount > 0
     }
-    
     
     var platformIcon: String {
         switch platform {
@@ -84,14 +82,12 @@ struct WidgetDataStorage {
             return
         }
         
-        
         do {
             let encoded = try JSONEncoder().encode(cars)
             userDefaults.set(encoded, forKey: "widgetCars")
             userDefaults.synchronize()
             print("✅ Сохранено \(cars.count) машин в UserDefaults")
                 
-            // Для отладки выведем первую машину
             if let first = cars.first {
                 print("   Первая: \(first.brand) \(first.model), платформа: \(first.platform)")
             }
@@ -99,11 +95,6 @@ struct WidgetDataStorage {
             print("❌ Ошибка кодирования: \(error)")
         }
         
-//        if let encoded = try? JSONEncoder().encode(cars) {
-//            userDefaults.set(encoded, forKey: "widgetCars")
-//            
-//            WidgetCenter.shared.reloadAllTimelines() 
-//        }
     }
     
     static func load() -> [WidgetCarData] {
@@ -121,7 +112,6 @@ struct WidgetDataStorage {
             let cars = try JSONDecoder().decode([WidgetCarData].self, from: data)
             print("✅ Загружено \(cars.count) машин из UserDefaults")
             
-            // Для отладки выведем первую машину
             if let first = cars.first {
                 print("   Первая: \(first.brand) \(first.model), платформа: \(first.platform)")
             }
@@ -133,16 +123,6 @@ struct WidgetDataStorage {
         }
     }
     
-//    static func load() -> [WidgetCarData] {
-//        guard let userDefaults = UserDefaults(suiteName: appGroup),
-//              let data = userDefaults.data(forKey: "widgetCars"),
-//              let cars = try? JSONDecoder().decode([WidgetCarData].self, from: data) else {
-//            return []
-//        }
-//        
-//        return cars
-//    }
-    
     static func clear() {
         guard let userDefaults = UserDefaults(suiteName: appGroup) else { return }
         userDefaults.removeObject(forKey: "widgetCars")
@@ -150,4 +130,3 @@ struct WidgetDataStorage {
         print("🧹 Данные виджета очищены")
     }
 }
-

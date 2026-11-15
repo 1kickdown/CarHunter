@@ -40,7 +40,6 @@ class CarSpecsAPIService {
                 return
             }
             
-  
             if let httpResponse = response as? HTTPURLResponse {
                 print("📡 CarQuery status code: \(httpResponse.statusCode)")
             }
@@ -51,7 +50,6 @@ class CarSpecsAPIService {
                 return
             }
             
-            // Выводим первые 200 символов ответа для отладки
             if let dataString = String(data: data, encoding: .utf8) {
                 let preview = String(dataString.prefix(200))
                 print("📄 CarQuery response preview: \(preview)")
@@ -63,7 +61,6 @@ class CarSpecsAPIService {
                 return
             }
             
- 
             var jsonString = dataString
             if jsonString.hasPrefix("?(") {
                 jsonString = String(jsonString.dropFirst(2))
@@ -112,7 +109,6 @@ class CarSpecsAPIService {
     private func parseTrim(_ trim: [String: Any], make: String, model: String, year: Int) -> CarSpecs {
         let engineType = trim["model_engine_type"] as? String
         
-        // В API объем двигателя в CC (см3), переводим в Литры
         let engineSize: Double? = {
             if let val = trim["model_engine_cc"] as? String, let dbl = Double(val) {
                 return dbl / 1000.0
@@ -120,7 +116,6 @@ class CarSpecsAPIService {
             return nil
         }()
         
-        // В логах ключ: model_engine_power_ps (это почти то же самое, что HP)
         let horsepower: Int? = {
             if let val = trim["model_engine_power_ps"] as? String {
                 return Int(val)
@@ -128,7 +123,6 @@ class CarSpecsAPIService {
             return nil
         }()
         
-        // Расход топлива в литрах на 100 км (LKM)
         let fuelCity: Double? = {
             if let val = trim["model_lkm_city"] as? String { return Double(val) }
             return nil

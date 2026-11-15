@@ -40,7 +40,6 @@ class KolesaParser {
         var listings: [CarListing] = []
         do {
             let doc = try SwiftSoup.parse(html)
-            // Используем селектор "содержит в названии класса"
             let items = try doc.select("div[class*='a-card'], .list-item")
             print("🇰🇿 Kolesa элементов найдено: \(items.count)")
             

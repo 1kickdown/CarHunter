@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct CarListing: Identifiable, Codable {
     let id = UUID()
     let title: String
@@ -18,7 +17,7 @@ struct CarListing: Identifiable, Codable {
     let location: String
     let url: String
     let imageUrl: String?
-    let source: String   // "Hasznaltauto" или "Kolesa"
+    let source: String
     
     var priceFormatted: String {
         let formatter = NumberFormatter()

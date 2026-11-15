@@ -5,7 +5,6 @@
 //  Created by kickdown on 19.02.2026.
 //
 
-
 import Foundation
 import SwiftData
 import WidgetKit
@@ -33,7 +32,6 @@ class MarketDataService {
         }
     }
     
-    // Поиск объявлений для конкретной машины
     func searchListings(for car: CarModel, completion: @escaping ([CarListing]) -> Void) {
         var allListings: [CarListing] = []
         let group = DispatchGroup()
@@ -57,11 +55,9 @@ class MarketDataService {
         }
         
         group.notify(queue: .main) {
-            // Обновляем статистику в модели car
             let prices = allListings.map { $0.price }.filter { $0 > 0 }
             car.averageMarketPrice = prices.isEmpty ? 0 : prices.reduce(0, +) / prices.count
             car.listingCount = allListings.count
-            // Хорошие предложения: цена ниже средней на 15%
             let avg = car.averageMarketPrice
             if avg > 0 {
                 car.goodDealsCount = allListings.filter { $0.price < avg * 85 / 100 }.count
@@ -76,7 +72,6 @@ class MarketDataService {
         }
     }
     
-    // Обновить данные для всех машин (для фонового обновления)
     func refreshAllCars(completion: @escaping () -> Void) {
         let fetchDescriptor = FetchDescriptor<CarModel>(predicate: #Predicate { $0.isActive == true })
         guard let cars = try? modelContext.fetch(fetchDescriptor) else {
